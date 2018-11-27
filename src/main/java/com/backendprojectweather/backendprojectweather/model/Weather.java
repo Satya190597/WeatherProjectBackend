@@ -14,13 +14,9 @@ public class Weather
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NotBlank
-	private float grnd_level;
-	@NotBlank
 	private float humidity;
 	@NotBlank
 	private float pressure;
-	@NotBlank
-	private float sea_level;
 	@NotBlank
 	private float temp;
 	@NotBlank
@@ -36,14 +32,10 @@ public class Weather
 	@NotBlank
 	private String description;
 	@NotBlank
+	private String unit;
+	@NotBlank
 	@OneToOne
 	private City city;
-	public float getGrnd_level() {
-		return grnd_level;
-	}
-	public void setGrnd_level(float grnd_level) {
-		this.grnd_level = grnd_level;
-	}
 	public float getHumidity() {
 		return humidity;
 	}
@@ -55,12 +47,6 @@ public class Weather
 	}
 	public void setPressure(float pressure) {
 		this.pressure = pressure;
-	}
-	public float getSea_level() {
-		return sea_level;
-	}
-	public void setSea_level(float sea_level) {
-		this.sea_level = sea_level;
 	}
 	public float getTemp() {
 		return temp;
