@@ -1,9 +1,11 @@
 package com.backendprojectweather.backendprojectweather.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -13,29 +15,31 @@ public class Weather
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@NotBlank
+	
 	private float humidity;
-	@NotBlank
+	
 	private float pressure;
-	@NotBlank
+	
 	private float temp;
-	@NotBlank
+	
 	private float temp_max;
-	@NotBlank
+	
 	private float temp_min;
-	@NotBlank
+	
 	private float speed;
-	@NotBlank
+	
 	private String country;
-	@NotBlank
+	
 	private String icon;
-	@NotBlank
+	
 	private String description;
-	@NotBlank
+	
 	private String unit;
-	@NotBlank
-	@OneToOne
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="CITY_ID")
 	private City city;
+	
 	public float getHumidity() {
 		return humidity;
 	}
@@ -96,5 +100,18 @@ public class Weather
 	public void setCity(City city) {
 		this.city = city;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	
 	
 }
