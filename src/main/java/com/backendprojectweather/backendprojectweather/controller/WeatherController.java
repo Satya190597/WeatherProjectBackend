@@ -1,5 +1,7 @@
 package com.backendprojectweather.backendprojectweather.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,5 +25,14 @@ public class WeatherController
 	{
 		return weatherService.save(weather);
 	}
-	
+	@RequestMapping(value = "/test",method = RequestMethod.GET)
+	public Weather test()
+	{
+		return weatherService.currentDateWeather();
+	}
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	public List<Weather> findAll()
+	{
+		return weatherService.findAll();	
+	}
 }

@@ -1,5 +1,8 @@
 package com.backendprojectweather.backendprojectweather.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,10 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
-public class Weather 
+public class Weather implements Serializable
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +42,10 @@ public class Weather
 	
 	private String unit;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@CreationTimestamp
+	private Date created_at;
+	
+	@OneToOne
 	@JoinColumn(name="CITY_ID")
 	private City city;
 	
@@ -112,6 +121,10 @@ public class Weather
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
+	public Date getCreated_at() {
+		return created_at;
+	}
 	
+
 	
 }
