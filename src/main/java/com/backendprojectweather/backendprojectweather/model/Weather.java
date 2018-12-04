@@ -4,14 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PreUpdate;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -48,6 +45,10 @@ public class Weather implements Serializable
 	@OneToOne
 	@JoinColumn(name="CITY_ID")
 	private City city;
+	
+	@OneToOne
+	@JoinColumn(name="USER_ID")
+	private User user;
 	
 	public float getHumidity() {
 		return humidity;
@@ -124,7 +125,16 @@ public class Weather implements Serializable
 	public Date getCreated_at() {
 		return created_at;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
 	
-
+	
 	
 }

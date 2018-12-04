@@ -26,17 +26,14 @@ public class User
 	@NotBlank
 	private String last_name;
 	@NotBlank
+	private String password;
+	@NotBlank
 	private String gender;
 	private Date dob;
 	@NotBlank
 	private String contact;
 	private String about;
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	public String getFirst_name() {
 		return first_name;
 	}
@@ -73,6 +70,24 @@ public class User
 	}
 	public void setAbout(String about) {
 		this.about = about;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

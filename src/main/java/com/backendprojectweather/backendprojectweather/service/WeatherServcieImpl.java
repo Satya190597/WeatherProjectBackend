@@ -18,10 +18,14 @@ public class WeatherServcieImpl implements WeatherService{
 	@Override
 	public Weather save(Weather weather)
 	{
-		return weatherRepository.save(weather);
+		if(weatherRepository.countTodayEntry()<=0)
+			return weatherRepository.save(weather);
+		else
+			return new Weather();
 	}
 	@Override
 	public Weather currentDateWeather() {
+		System.out.println(new SimpleDateFormat("dd.MM.yyyy").format(new Date())+" ");
 		return weatherRepository.checkTodayEntry(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
 	}
 	@Override

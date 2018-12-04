@@ -3,6 +3,9 @@ package com.backendprojectweather.backendprojectweather.controller;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,5 +39,12 @@ public class UserController
 	{
 		String email = headers.get("email").get(0);
 		return userService.login(email);
+	}
+	
+	@RequestMapping(value="/current_user",method = RequestMethod.GET)
+	public String currentUser()
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName();
 	}
 }
