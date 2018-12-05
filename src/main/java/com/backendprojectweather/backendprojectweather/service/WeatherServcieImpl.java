@@ -15,21 +15,39 @@ public class WeatherServcieImpl implements WeatherService{
 	
 	@Autowired
 	private WeatherRepository weatherRepository;
+	/*
+	 *	Save weather record
+	 */
 	@Override
 	public Weather save(Weather weather)
 	{
+		// Check if todays record is present or not
 		if(weatherRepository.countTodayEntry()<=0)
 			return weatherRepository.save(weather);
 		else
 			return new Weather();
 	}
+	/*
+	 * 	Return Todays weather record
+	 */
 	@Override
-	public Weather currentDateWeather() {
-		System.out.println(new SimpleDateFormat("dd.MM.yyyy").format(new Date())+" ");
-		return weatherRepository.checkTodayEntry(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
+	public Weather currentDateWeather() 
+	{
+		return weatherRepository.currentDateWeather(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
 	}
+	/*
+	 *  Return list of weather record data
+	 */
 	@Override
-	public List<Weather> findAll() {
+	public List<Weather> findAll() 
+	{
 		return weatherRepository.findAll();
+	}
+	/*
+	 *  Return list of weather data according to city id
+	 */
+	@Override
+	public List<Weather> findByCityId(int id) {
+		return weatherRepository.findByCityId(id);
 	}
 }

@@ -12,12 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfigure extends WebSecurityConfigurerAdapter
 {
 	
-	@Autowired
+	/*@Autowired
 	DataSource dataSource;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -32,7 +32,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter
 		// TODO Auto-generated method stub
 		/*auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("SELECT username,decode(password,'base64'),enabled FROM USER WHERE username=?").
 		authoritiesByUsernameQuery("SELECT username, role FROM ROLE WHERE username=?");*/
-		auth.inMemoryAuthentication().withUser("satya").password("{noop}root").roles("USER");
-	}	
+		//auth.inMemoryAuthentication().withUser("satya").password("{noop}root").roles("USER");
+	//}	
 }
 
