@@ -57,5 +57,12 @@ public class WeatherServcieImpl implements WeatherService{
 	public List<Weather> findAllByCurrentUser(Long user_id) {
 		return weatherRepository.findAllByCurrentUser(user_id);
 	}
+	/*
+	 * DELETE SPECIFIC WEATHER RECORD
+	 */
+	@Override
+	public void deleteById(Long id) {
+		weatherRepository.deleteById(id);
+	}
 	
 }

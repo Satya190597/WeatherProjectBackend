@@ -10,4 +10,5 @@ public interface WeatherService {
 	public List<Weather> findAll();
 	public List<Weather> findAllByCurrentUser(Long user_id);
 	public List<Weather> findByCityId(int id,Long user_id);
+	public void deleteById(Long id);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backendprojectweather.backendprojectweather.model.User;
 import com.backendprojectweather.backendprojectweather.model.Weather;
+import com.backendprojectweather.backendprojectweather.repository.WeatherRepository;
 import com.backendprojectweather.backendprojectweather.service.UserService;
 import com.backendprojectweather.backendprojectweather.service.WeatherService;
 
@@ -62,5 +63,13 @@ public class WeatherController
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByEmail(auth.getName());
 		return weatherService.findByCityId(id,user.getId());
+	}
+	/*
+	 * DELETE A Particular Weather Record
+	 */
+	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+	public void deleteById(@PathVariable Long id)
+	{
+		weatherService.deleteById(id);
 	}
 }
