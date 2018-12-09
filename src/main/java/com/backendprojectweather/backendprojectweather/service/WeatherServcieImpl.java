@@ -47,7 +47,15 @@ public class WeatherServcieImpl implements WeatherService{
 	 *  Return list of weather data according to city id
 	 */
 	@Override
-	public List<Weather> findByCityId(int id) {
-		return weatherRepository.findByCityId(id);
+	public List<Weather> findByCityId(int id,Long user_id) {
+		return weatherRepository.findByCityId(id,user_id);
 	}
+	/*
+	 *	Select Specific User Data
+	 */
+	@Override
+	public List<Weather> findAllByCurrentUser(Long user_id) {
+		return weatherRepository.findAllByCurrentUser(user_id);
+	}
+	
 }

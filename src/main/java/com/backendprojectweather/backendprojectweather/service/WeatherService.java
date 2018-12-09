@@ -8,5 +8,6 @@ public interface WeatherService {
 	public Weather save(Weather weather);
 	public Weather currentDateWeather();
 	public List<Weather> findAll();
-	public List<Weather> findByCityId(int id);
+	public List<Weather> findAllByCurrentUser(Long user_id);
+	public List<Weather> findByCityId(int id,Long user_id);
 }

@@ -3,6 +3,8 @@ package com.backendprojectweather.backendprojectweather.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,16 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backendprojectweather.backendprojectweather.model.User;
 import com.backendprojectweather.backendprojectweather.model.Weather;
+import com.backendprojectweather.backendprojectweather.service.UserService;
 import com.backendprojectweather.backendprojectweather.service.WeatherService;
 
-@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping(value = "/weather")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 public class WeatherController 
 {
 	@Autowired
 	private WeatherService weatherService;
+	@Autowired
+	private UserService userService;
 	
 	/*
 	 *	POST, weather record to enter a new weather record
@@ -43,7 +49,9 @@ public class WeatherController
 	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public List<Weather> findAll()
 	{
-		return weatherService.findAll();	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(auth.getName());
+		return weatherService.findAllByCurrentUser(user.getId());	
 	}
 	/*
 	 *	Get, All weathers records my CITY_ID
@@ -51,6 +59,8 @@ public class WeatherController
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public List<Weather> findByCity(@PathVariable int id)
 	{
-		return weatherService.findByCityId(id);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByEmail(auth.getName());
+		return weatherService.findByCityId(id,user.getId());
 	}
 }

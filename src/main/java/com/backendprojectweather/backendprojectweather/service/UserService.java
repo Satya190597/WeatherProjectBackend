@@ -9,5 +9,5 @@ public interface UserService
 	
 	public User save(User user);
 	
-	public User login(String email);
+	public User findByEmail(String email);
 }

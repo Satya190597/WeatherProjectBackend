@@ -13,6 +13,8 @@ public interface WeatherRepository extends JpaRepository<Weather, Long>{
 	public Weather currentDateWeather(String dateFormat);
 	@Query(value = "SELECT COUNT(*) FROM WEATHER WHERE DAY(CREATED_AT) = DAY(CURRENT_DATE()) AND MONTH(CREATED_AT) = MONTH(CURRENT_DATE()) AND YEAR(CREATED_AT) = YEAR(CURRENT_DATE())",nativeQuery = true)
 	public int countTodayEntry();
-	@Query(value = "SELECT * FROM WEATHER WHERE CITY_ID = ?1",nativeQuery = true)
-	public List<Weather> findByCityId(int id);
+	@Query(value = "SELECT * FROM WEATHER WHERE CITY_ID = ?1 AND USER_ID=?2",nativeQuery = true)
+	public List<Weather> findByCityId(int id,Long user_id);
+	@Query(value = "SELECT * FROM WEATHER WHERE USER_ID = ?1",nativeQuery = true)
+	public List<Weather> findAllByCurrentUser(Long userId);
 }

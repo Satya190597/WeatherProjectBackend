@@ -11,5 +11,5 @@ public interface UserRepository extends JpaRepository<User,Long>{
 	
 	
 	@Query(value = "SELECT * FROM USER WHERE EMAIL=?1 LIMIT 1",nativeQuery = true)
-	public User login(String email);
+	public User findByEmail(String email);
 }
